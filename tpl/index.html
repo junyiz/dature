@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<title><%= title %></title>
+<style>
+.wrap {
+  width: 800px;
+  margin: 0 auto;
+}
+.title {
+  font-size: 16px;
+  border-bottom: 1px dashed #eee;
+  line-height: 30px;
+  overflow: hidden;
+}
+a {
+  color: #686868;
+  font-size: 12px;
+  text-decoration: none;
+}
+span {
+  color: #989898;
+  font-size: 13px;
+  margin-right: 8px;
+  float: right;
+}
+@media screen and (max-device-width:480px) {
+    .wrap {
+        width: 100%;
+    }
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1><%= title %></h1>
+    <% for (var i = 0; i < blog.length; i++) { %>
+    <div class="title"><a href="./blog<%= i + 1 %>.html"><%= blog[i].title %></a><span><%= blog[i].date %></span></div>
+    <% } %>
+  </div>
+</body>
+</html>
