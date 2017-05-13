@@ -34,9 +34,9 @@ span {
 </head>
 <body>
   <div class="wrap">
-    <h1><%= title %></h1>
+    <h1><%- title %></h1>
     <% for (var i = 0; i < blog.length; i++) { %>
-    <div class="title"><a href="./blog<%= i + 1 %>.html"><%= blog[i].title %></a><span><%= blog[i].date %></span></div>
+    <div class="title"><a href="./blog<%= i + 1 %>.html"><%- blog[i].title %></a><span><%= blog[i].date %></span></div>
     <% } %>
   </div>
 </body>

@@ -1,6 +1,6 @@
 {
   "name": "dature",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "新浪博客抓取小程序",
   "main": "index.js",
   "bin": {
@@ -24,6 +24,10 @@
     "capture",
     "sina",
     "blog"
+  ],
+  "files": [
+    "lib",
+    "index.js"
   ],
   "author": "Junyi Zhang <junyime@qq.com>",
   "license": "ISC"

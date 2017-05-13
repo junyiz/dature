@@ -7,24 +7,32 @@ let zenio = require('zenio');
 let cheerio = require('cheerio');
 let mkdirp = require('mkdirp');
 let isUrl = require('is-url');
+let cwd = process.cwd();
 let join = path.join;
 let headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'};
-let blogDir = './blog';
+let blogDir = join(cwd, './blog');
 let argv = require('yargs')
   .option('u', {
     alias : 'uid',
     demand: false,
+    requiresArg: true,
     describe: '新浪博客作者的uid',
-    type: 'number'
+    type: 'string'
   })
   .option('c', {
     alias : 'create',
+    boolean: true,
+    describe: '生成HTML页面'
+  })
+  .option('j', {
+    alias : 'json',
     demand: false,
+    requiresArg: true,
     describe: '新浪博客数据文件',
     type: 'string'
   })
   .usage('Usage: dature [options]')
-  .example('dature -u 1234567890')
+  .example('dature -c -u 1234567890')
   .help('h')
   .alias('h', 'help')
   .epilog('@copyright 2017 junyiz')
@@ -44,10 +52,10 @@ async function fetch(uid) {
   let list = await zenio.get(blogUrl, null, headers);
   let $ = cheerio.load(list);
   addUrl($);
-  let page = $('span[style]').text().match(/\d+/)[0]; //总页数
+  let page = ($('span[style]').text().match(/\d+/) || [0])[0]; //总页数
   data.title = $('title').text().split('_')[1];
   data.link = $('.blogtitle a').attr('href');
-  for (let i = 2; i <= page; i++) {
+  for (let i = 2; i <= page && page > 1; i++) {
     let list = await zenio.get(blogUrl.replace(/1.html/, i + '.html'), null, headers);
     let $ = cheerio.load(list);
     addUrl($);
@@ -106,15 +114,15 @@ function createHtml(data) {
   }
 }
 
-if (argv.u) {
+if (argv.u && argv.c) {
   mkdirp.sync(blogDir);
-  fetch(argv.u).then(data => {
-   if (argv.c) {
-      createHtml(data);
-   }
-  }, console.log);
-} else if (argv.c) {
-  let dataFile = join(process.cwd(), argv.c || './blog/data.json');
+  let uid = argv.u || argv.c;
+  fetch(uid).then(createHtml, console.log);
+} else if (argv.u) {
+  mkdirp.sync(blogDir);
+  fetch(argv.u).catch(console.log);
+} else if (argv.j) {
+  let dataFile = join(cwd, argv.j);
   blogDir = path.dirname(dataFile);
   mkdirp.sync(blogDir);
   createHtml(require(dataFile));
