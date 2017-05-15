@@ -3,6 +3,7 @@ let fs = require('fs');
 let ejs = require('ejs');
 let urlParse = require('url').parse;
 let path = require('path');
+let dfmt = require('dfmt');
 let zenio = require('zenio');
 let cheerio = require('cheerio');
 let mkdirp = require('mkdirp');
@@ -40,7 +41,7 @@ let argv = require('yargs')
 
 async function fetch(uid) {
   let blogUrl = `http://blog.sina.com.cn/s/articlelist_${uid}_0_1.html`;
-  let data = {urls: [], blog: [], imgs: {}};
+  let data = {urls: [], blog: [], imgs: {}, date: dfmt('yyyy-MM-dd hh:mm:ss')};
   let addUrl = $ => {
     $('.articleList a[title]').each((i, el) => {
       let href = $(el).attr('href');
@@ -110,7 +111,7 @@ function createHtml(data) {
   fs.writeFileSync(join(blogDir, 'index.html'), ejs.render(tplIndex, data), 'utf8');
   //blog[n].html
   for (let i = 0; i < data.blog.length; i++) {
-      fs.writeFileSync(join(blogDir, `blog${i + 1}.html`), ejs.render(tplBlog, data.blog[i]), 'utf8');
+    fs.writeFileSync(join(blogDir, `blog${i + 1}.html`), ejs.render(tplBlog, data.blog[i]), 'utf8');
   }
 }
 

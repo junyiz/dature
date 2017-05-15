@@ -8,18 +8,27 @@
   width: 800px;
   margin: 0 auto;
 }
+h1 {
+  font-size: 26px;
+  line-height: 42px;
+}
+h1 span {
+  font-size: 14px;
+  color: #989898;
+  margin-left: 5px;
+}
 .title {
   font-size: 16px;
   border-bottom: 1px dashed #eee;
   line-height: 30px;
   overflow: hidden;
 }
-a {
+.title a {
   color: #686868;
   font-size: 12px;
   text-decoration: none;
 }
-span {
+.title span {
   color: #989898;
   font-size: 13px;
   margin-right: 8px;
@@ -34,7 +43,7 @@ span {
 </head>
 <body>
   <div class="wrap">
-    <h1><%- title %></h1>
+    <h1><%- title %><span>(共<%= blog.length %>篇)</span></h1>
     <% for (var i = 0; i < blog.length; i++) { %>
     <div class="title"><a href="./blog<%= i + 1 %>.html"><%- blog[i].title %></a><span><%= blog[i].date %></span></div>
     <% } %>

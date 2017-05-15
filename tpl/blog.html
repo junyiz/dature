@@ -8,6 +8,27 @@
   width: 800px;
   margin: 0 auto;
 }
+h1 {
+  font-size: 20px;
+  line-height: 42px;
+  border-bottom: 1px solid #E8E8E8;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+.info {
+  font-size: 14px;
+  color: #989898;
+}
+.date {
+  margin-right: 30px;
+}
+.cate {
+  margin-right: 30px;
+}
+.link {
+  float: right;
+  color: #989898;
+}
 .content {
   color: #383838;
 }
@@ -21,6 +42,10 @@
 <body>
   <div class="wrap">
     <h1><%- title %></h1>
+    <div class="info">
+      <span class="date">发布时间：<%= date %></span>
+      <span class="cate">分类：<%= cate %></span>
+      <a class="link" href="<%=link%>">原文链接</a></div>
     <div class="content"><%- content %></div>
   </div>
 </body>
