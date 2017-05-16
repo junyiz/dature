@@ -50,14 +50,14 @@ async function fetch(uid) {
   };
 
   //抓取博客的URL
-  let list = await zenio.get(blogUrl, null, headers);
+  let list = await zenio.get(blogUrl, null, headers).catch(console.log);
   let $ = cheerio.load(list);
   addUrl($);
   let page = ($('span[style]').text().match(/\d+/) || [0])[0]; //总页数
   data.title = $('title').text().split('_')[1];
   data.link = $('.blogtitle a').attr('href');
   for (let i = 2; i <= page && page > 1; i++) {
-    let list = await zenio.get(blogUrl.replace(/1.html/, i + '.html'), null, headers);
+    let list = await zenio.get(blogUrl.replace(/1.html/, i + '.html'), null, headers).catch(console.log);
     let $ = cheerio.load(list);
     addUrl($);
   }
@@ -65,7 +65,7 @@ async function fetch(uid) {
   //抓取博客
   for (let i = 0; i < data.urls.length; i++) {
     let link = data.urls[i];
-    let post = await zenio.get(link, null, headers);
+    let post = await zenio.get(link, null, headers).catch(console.log);
     let $ = cheerio.load(post, {decodeEntities: false});
     let title = $('.artical .titName').text();
     let date = $('.artical .time.SG_txtc').text().replace(/(\(|\))/g, '');
