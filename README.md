@@ -15,4 +15,4 @@ dature sina_blog_uid
 
 ## 查看新浪博客的UID，如下图
 
-![](http://github.com/junyiz/dature/raw/master/example.jpg)
+![example](https://raw.githubusercontent.com/junyiz/dature/master/example.jpg)
