@@ -1,7 +1,7 @@
 {
   "name": "dature",
-  "version": "0.0.6",
-  "description": "新浪博客抓取小程序",
+  "version": "0.0.7",
+  "description": "新浪博客抓取程序",
   "main": "index.js",
   "bin": {
     "dature": "index.js"
@@ -12,8 +12,7 @@
     "ejs": "^2.5.6",
     "is-url": "^1.2.2",
     "mkdirp": "^0.5.1",
-    "yargs": "^8.0.1",
-    "zenio": "^0.0.3"
+    "yargs": "^8.0.1"
   },
   "repository": {
     "type": "git",
@@ -35,6 +34,7 @@
   ],
   "files": [
     "tpl",
+    "lib",
     "index.js"
   ],
   "author": "Junyi Zhang <junyime@qq.com>",

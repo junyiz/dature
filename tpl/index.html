@@ -43,9 +43,9 @@ h1 span {
 </head>
 <body>
   <div class="wrap">
-    <h1><%- title %><span>(共<%= blog.length %>篇)</span></h1>
-    <% for (var i = 0; i < blog.length; i++) { %>
-    <div class="title"><a href="./blog<%= i + 1 %>.html"><%- blog[i].title %></a><span><%= blog[i].date %></span></div>
+    <h1><%- title %><span>(共<%= post.length %>篇)</span></h1>
+    <% for (var i = 0; i < post.length; i++) { %>
+    <div class="title"><a href="./post/<%= i + 1 %>.html"><%- post[i].title %></a><span><%= post[i].date %></span></div>
     <% } %>
   </div>
 </body>
