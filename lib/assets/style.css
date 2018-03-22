@@ -1,0 +1,203 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Source Sans Pro,Helvetica Neue,Arial,sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #34495e;
+  background-color: #fff;
+}
+.root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.side {
+  width: 245px;
+  position: fixed;
+  left: -245px;
+  background: #fff;
+  border-right: 1px solid #eceef1;
+  height: calc(100% - 0px);
+  z-index: 99;
+  box-sizing: border-box;
+  -webkit-transition: margin .5s;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.side h1 {
+  font-size: 20px;
+  line-height: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid #eceef1;
+}
+.side ul {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.side li {
+  list-style: none;
+  line-height: 30px;
+}
+.side li a {
+  color: #87969d;
+  display: block;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.side li a.active {
+  color: #42b983;
+  font-weight: 400;
+}
+.head {
+  width: 18px;
+  height: 40px;
+  padding: 10px 12px 10px 20px;
+  position: fixed;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-transition: all .5s;
+  z-index: 20;
+}
+.head svg {
+  cursor: pointer;
+}
+.head svg:hover {
+  color: #42b983;
+}
+.main {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  -webkit-transition: all .5s;
+  z-index: 10;
+}
+.main .title {
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 10px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  box-sizing: border-box;
+  border-bottom: 1px dashed #eceef1;
+}
+.main .content {
+  width: 600px;
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 1rem;
+  box-sizing: border-box;
+  padding-bottom: 1.2rem;
+}
+.main .content p {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.main .content a {
+  font-size: 14px;
+  color: #42b983;
+  text-decoration: none;
+}
+.foot {
+  height: 40px;
+  padding-top: 7px;
+  padding-left: 25px;
+  padding-right: 25px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-transition: all .5s;
+  background-color: #fff;
+  z-index: 20;
+}
+.foot span {
+  color: #87969d;
+  position: relative;
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+.foot .prev {
+  float: left;
+  padding-left: 10px;
+}
+.foot .next {
+  float: right;
+  text-align: right;
+  padding-right: 10px;
+}
+.foot .prev::before {
+  top: 10px;
+  left: 2px;
+  position: absolute;
+  content: "";
+  width: 8px;
+  height: 8px;
+  display: block;
+  border-left: 2px solid #dbdbdb;
+  border-bottom: 2px solid #dbdbdb;
+  transform: rotate(45deg);
+}
+.foot .next::after {
+  top: 10px;
+  right: 2px;
+  position: absolute;
+  content: "";
+  width: 8px;
+  height: 8px;
+  display: block;
+  border-top: 2px solid #dbdbdb;
+  border-right: 2px solid #dbdbdb;
+  transform: rotate(45deg);
+}
+
+.hasSide .side {
+  margin-left: 245px;
+}
+.hasSide .main {
+  left: 245px;
+}
+.hasSide .head,
+.hasSide .foot {
+  left: 245px;
+  width: calc(100% - 245px);
+}
+
+@media screen and (max-device-width:480px) {
+  .head {
+    padding-left: 10px;
+  }
+  .main .title,
+  .main .content {
+    width: 100%; 
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .foot {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
