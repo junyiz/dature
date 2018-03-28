@@ -1,6 +1,6 @@
 {
   "name": "dature",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "新浪博客抓取程序",
   "main": "cli.js",
   "bin": {

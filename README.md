@@ -1,5 +1,5 @@
 # dature
-抓取新浪博客的数据，包含标题、正文、时间、分类、图片，并生成HTML文件
+基于 Node 的博客抓取程序，抓取数据包含标题、正文、时间、分类、图片，并生成HTML文件
 
 ## 安装
 
@@ -10,9 +10,17 @@ npm install -g dature
 ## 使用
 
 ```bash
-dature sina_blog_uid
+# 抓取牛根生的博客
+dature -t sina -u 1263917762
+
+# 抓取36氪发布在CSDN的文章
+daturn -t csdn -u bkmk01mz3w
 ```
 
-## 查看新浪博客的UID，如下图
+## 如何查看博客的UID
+ 
+#### 新浪博客
+![example](https://raw.githubusercontent.com/junyiz/dature/master/images/sina.jpg)
 
-![example](https://raw.githubusercontent.com/junyiz/dature/master/example.jpg)
+#### CSDN博客
+![example](https://raw.githubusercontent.com/junyiz/dature/master/images/csdn.jpg)

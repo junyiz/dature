@@ -114,6 +114,9 @@ body {
   color: #42b983;
   text-decoration: none;
 }
+.main .content img {
+  max-width: 100%;
+}
 .foot {
   height: 40px;
   padding-top: 7px;
