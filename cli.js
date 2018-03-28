@@ -39,4 +39,5 @@ if (argv.uid && argv.type) {
 
 /*
  新浪博客UID, 例 1263917762
+ CSDN博客UId，例 v_xchen_v
 */
