@@ -8,6 +8,13 @@ const dir = join(process.cwd(), './blog')
 const uid = process.argv[2]
 
 let argv = yargs
+  .option('t', {
+    alias : 'type',
+    demand: false,
+    requiresArg: true,
+    describe: '博客的类型，如 sina: 新浪博客, csdn: CSDN博客, b163: 网易博客',
+    type: 'string'
+  })
   .option('u', {
     alias : 'uid',
     demand: false,
@@ -15,17 +22,10 @@ let argv = yargs
     describe: '博客uid',
     type: 'string'
   })
-  .option('t', {
-    alias : 'type',
-    demand: false,
-    requiresArg: true,
-    describe: '博客的类型，如 sina: 新浪博客, csdn：CSDN博客',
-    type: 'string'
-  })
   .usage('Usage: dature [options]')
   .help('h')
   .alias('h', 'help')
-  .example('dature -u 1263917762 -t sina')
+  .example('dature -t sina -u 1263917762')
   .epilog('@junyiz')
   .argv;
 
