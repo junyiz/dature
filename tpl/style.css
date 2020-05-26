@@ -94,7 +94,21 @@ body {
   font-weight: 400;
   line-height: 24px;
   box-sizing: border-box;
+}
+.main .attr {
+  width: 600px;
+  font-size: 12px;
+  line-height: 36px;
+  margin-left: auto;
+  margin-right: auto;
   border-bottom: 1px dashed #eceef1;
+}
+.main .attr span {
+  margin-right: 20px;
+}
+.main .attr span a {
+  color: #42b983;
+  text-decoration: none;
 }
 .main .content {
   width: 600px;

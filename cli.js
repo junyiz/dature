@@ -3,16 +3,14 @@
 const join = require('path').join
 const yargs = require('yargs')
 const fetch = require('./lib/fetch')
-
 const dir = join(process.cwd(), './blog')
-const uid = process.argv[2]
 
 let argv = yargs
   .option('t', {
     alias : 'type',
     demand: false,
     requiresArg: true,
-    describe: '博客的类型，如 sina: 新浪博客, csdn: CSDN博客, b163: 网易博客',
+    describe: '博客的类型，如 sina: 新浪博客, csdn: CSDN博客',
     type: 'string'
   })
   .option('u', {
@@ -31,7 +29,7 @@ let argv = yargs
 
 if (argv.uid && argv.type) {
   fetch(dir, argv.uid, argv.type).then(function() {
-      console.info(`\n抓取完毕, 文件目录：${dir}\n`)
+    console.info(`\n抓取完毕, 博客存储目录：${dir}\n`)
   })
 } else {
   yargs.showHelp()
