@@ -131,6 +131,10 @@ body {
 .main .content img {
   max-width: 100%;
 }
+.main .content font[size] {
+  display: block;
+  margin: 5px 0;
+}
 .foot {
   height: 40px;
   padding-top: 7px;
