@@ -1,6 +1,6 @@
 {
   "name": "dature",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "博客抓取程序",
   "main": "cli.js",
   "bin": {
