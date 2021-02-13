@@ -1,5 +1,5 @@
 .idea
 .vscode
 .DS_store
-blog
+blog-*
 node_modules

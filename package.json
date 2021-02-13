@@ -1,7 +1,7 @@
 {
   "name": "dature",
-  "version": "0.1.1",
-  "description": "博客抓取程序",
+  "version": "0.2.0",
+  "description": "新浪博客抓取程序",
   "main": "cli.js",
   "bin": {
     "dature": "cli.js"
@@ -30,7 +30,6 @@
     "fetch",
     "capture",
     "sina",
-    "csdn",
     "blog"
   ],
   "files": [
