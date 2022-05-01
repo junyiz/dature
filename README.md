@@ -25,3 +25,11 @@ dature -u 1263917762 -c 'xxxxxx'
 ## 如何查看新浪博客的 cookie
 
 ![cookie](https://raw.githubusercontent.com/junyiz/dature/master/images/cookie.png)
+
+注意只需复制大红框中冒号后面的部分
+
+
+## buy-me-a-tea
+如果这个仓库对你有帮助，欢迎 star 或 buy me a tea:
+
+![wechat](https://raw.githubusercontent.com/junyiz/dature/master/images/wechat.jpg)
