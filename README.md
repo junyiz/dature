@@ -11,12 +11,17 @@ npm install -g dature
 
 ```bash
 # 抓取牛根生的博客
-dature -u 1263917762
+dature -u 1263917762 -c 'xxxxxx'
+
+# xxxxxx 为 cookie
 ```
 ## 抓取后生成的新博客
 ![example](https://raw.githubusercontent.com/junyiz/dature/master/images/example.jpg)
 
-## 如何查看博客的 UID
+## 如何查看新浪博客的 UID
  
-#### 新浪博客
 ![example](https://raw.githubusercontent.com/junyiz/dature/master/images/sina.jpg)
+
+## 如何查看新浪博客的 cookie
+
+![cookie](https://raw.githubusercontent.com/junyiz/dature/master/images/cookie.jpg)

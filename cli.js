@@ -12,6 +12,13 @@ let argv = yargs
     describe: '博客uid',
     type: 'string'
   })
+  .option('c', {
+    alias : 'cookie',
+    demand: false,
+    requiresArg: false,
+    describe: '登录后的cookie',
+    type: 'string'
+  })
   .usage('Usage: dature [options]')
   .help('h')
   .alias('h', 'help')
@@ -21,7 +28,8 @@ let argv = yargs
 
 if (argv.uid) {
   const dir = join(process.cwd(), `./blog-${argv.uid}`)
-  fetch(dir, argv.uid).then(function() {
+  const cookie = (argv.cookie || '').replace(/NowDate[^;]*;/g, '')
+  fetch(dir, argv.uid, cookie).then(function() {
     console.info(`\n抓取完毕, 博客存储目录：${dir}\n`)
   })
 } else {

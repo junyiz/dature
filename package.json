@@ -1,6 +1,6 @@
 {
   "name": "dature",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "新浪博客抓取程序",
   "main": "cli.js",
   "bin": {
@@ -8,10 +8,8 @@
   },
   "dependencies": {
     "cheerio": "^0.22.0",
-    "html-downloader": "^1.1.0",
     "is-url": "^1.2.2",
     "mkdirp": "^0.5.1",
-    "picture-downloader": "^2.0.0",
     "yargs": "^11.0.0"
   },
   "repository": {
