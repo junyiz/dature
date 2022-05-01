@@ -24,4 +24,4 @@ dature -u 1263917762 -c 'xxxxxx'
 
 ## 如何查看新浪博客的 cookie
 
-![cookie](https://raw.githubusercontent.com/junyiz/dature/master/images/cookie.jpg)
+![cookie](https://raw.githubusercontent.com/junyiz/dature/master/images/cookie.png)
