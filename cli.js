@@ -28,7 +28,8 @@ let argv = yargs
 
 if (argv.uid) {
   const dir = join(process.cwd(), `./blog-${argv.uid}`)
-  const cookie = (argv.cookie || '').replace(/NowDate[^;]*;/g, '')
+  const cookie = (argv.cookie || '')
+    .replace(/(NowDate|BLOG_TITLE|mblog_userinfo)[^;]*;/g, '')
   fetch(dir, argv.uid, cookie).then(function() {
     console.info(`\n抓取完毕, 博客存储目录：${dir}\n`)
   })
