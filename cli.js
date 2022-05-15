@@ -3,6 +3,7 @@
 const join = require('path').join
 const yargs = require('yargs')
 const fetch = require('./lib/fetch')
+const package = require('./package.json')
 
 let argv = yargs
   .option('u', {
@@ -27,6 +28,7 @@ let argv = yargs
   .argv;
 
 if (argv.uid) {
+  console.log(`dature@${package.version}\n`)
   const dir = join(process.cwd(), `./blog-${argv.uid}`)
   const cookie = (argv.cookie || '')
     .replace(/(NowDate|BLOG_TITLE|mblog_userinfo)[^;]*;/g, '')
