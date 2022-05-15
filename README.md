@@ -28,8 +28,7 @@ dature -u 1263917762 -c 'xxxxxx'
 
 注意只需复制大红框中冒号后面的部分
 
-
 ## buy-me-a-tea
 如果这个仓库对你有帮助，欢迎 star 或 buy me a tea:
 
-![wechat](https://raw.githubusercontent.com/junyiz/dature/master/images/wechat.jpg)
+<img src="https://raw.githubusercontent.com/junyiz/dature/master/images/wechat.jpg" width="300" />
