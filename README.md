@@ -11,7 +11,7 @@ npm install -g dature
 
 ```bash
 # 抓取牛根生的博客
-dature -u 1263917762 -c 'xxxxxx'
+dature -u 1263917762 -c "xxxxxx"
 
 # xxxxxx 为 cookie
 ```
