@@ -1,5 +1,8 @@
 # dature
-基于 Node 的新浪博客抓取程序，抓取数据包含标题、正文、时间、分类、标签、图片，并生成 HTML 文件
+基于 Node.js 的新浪博客抓取程序，抓取数据包含标题、正文、时间、分类、标签、图片，并生成 HTML 文件
+
+## 前置
+需要先安装 Node.js，参见：[https://nodejs.org/zh-cn/download/](https://nodejs.org/zh-cn/download/)
 
 ## 安装
 
