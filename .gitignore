@@ -3,3 +3,6 @@
 .DS_store
 blog-*
 node_modules
+
+out
+dist

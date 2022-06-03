@@ -33,7 +33,7 @@ if (argv.uid) {
   const cookie = (argv.cookie || '')
     .replace(/(NowDate|BLOG_TITLE|mblog_userinfo)[^;]*;/g, '')
   fetch(dir, argv.uid, cookie).then(function() {
-    console.info(`\n抓取完毕, 博客存储目录：${dir}\n`)
+    console.info(`\n备份完毕, 博客存储目录：${dir}\n`)
   })
 } else {
   yargs.showHelp()

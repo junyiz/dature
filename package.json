@@ -1,19 +1,21 @@
 {
   "name": "dature",
   "version": "0.3.6",
-  "description": "新浪博客抓取程序",
-  "main": "cli.js",
+  "description": "新浪博客备份工具",
+  "main": "main.js",
   "bin": {
     "dature": "cli.js"
   },
   "dependencies": {
     "cheerio": "^0.22.0",
+    "iconv-lite": "^0.4.21",
     "is-url": "^1.2.2",
     "mkdirp": "^0.5.1",
-    "yargs": "^11.0.0",
-    "iconv-lite": "^0.4.21"
+    "yargs": "^11.0.0"
   },
   "devDependencies": {
+    "electron": "^19.0.2",
+    "electron-builder": "^23.0.3",
     "pkg": "^5.6.0"
   },
   "repository": {
@@ -25,9 +27,11 @@
   },
   "homepage": "https://github.com/junyiz/dature#readme",
   "scripts": {
+    "start": "electron .",
     "build": "pkg .",
     "build:macos": "pkg . -t node12-macos-x64 -o ./dist/dature-macos -d",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "electron-builder --win --x64"
   },
   "keywords": [
     "data",
@@ -49,6 +53,15 @@
       "node12-win-x64"
     ],
     "outputPath": "dist"
+  },
+  "build": {
+    "appId": "cn.dature.app",
+    "mac": {
+      "target": ["dmg", "zip"]
+    },
+    "win": {
+      "target": ["nsis", "zip"]
+    }
   },
   "author": "Junyi Zhang <junyime@qq.com>",
   "license": "ISC"
