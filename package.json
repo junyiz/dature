@@ -31,7 +31,9 @@
     "build": "pkg .",
     "build:macos": "pkg . -t node12-macos-x64 -o ./dist/dature-macos -d",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dist": "electron-builder --win --x64"
+    "dist": "npm run dist:mac && npm run dist:win",
+    "dist:mac": "electron-builder --mac --x64",
+    "dist:win": "electron-builder --win --x64"
   },
   "keywords": [
     "data",
@@ -57,10 +59,16 @@
   "build": {
     "appId": "cn.dature.app",
     "mac": {
-      "target": ["dmg", "zip"]
+      "target": [
+        "dmg",
+        "zip"
+      ]
     },
     "win": {
-      "target": ["nsis", "zip"]
+      "target": [
+        "nsis",
+        "zip"
+      ]
     }
   },
   "author": "Junyi Zhang <junyime@qq.com>",
