@@ -1,6 +1,6 @@
 {
   "name": "dature",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "新浪博客备份工具",
   "main": "main.js",
   "bin": {
