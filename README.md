@@ -1,23 +1,25 @@
 # dature
 基于 Node.js 的新浪博客备份程序，备份数据包含标题、正文、时间、分类、标签、图片，并生成 HTML 文件
 
-## 前置
-需要先安装 Node.js，参见：[https://nodejs.org/zh-cn/download/](https://nodejs.org/zh-cn/download/)
+![dature](https://gitee.com/junyiz/dature/raw/master/images/dature.jpg)
 
-## 安装
+## 普通用户
+下载安装，即可使用 [下载地址](https://github.com/junyiz/dature/releases)
 
+## 专业用户
 ```bash
+# 1. 安装 Node.js 参见：https://nodejs.org/zh-cn/download/
+
+# 2. 安装命令
+
 npm install -g dature 
-```
 
-## 使用
+# 3. 命令行使用
 
-```bash
-# 备份牛根生的博客
+# 例如备份牛根生的博客(xxxxxx 为 cookie)
 dature -u 1263917762 -c "xxxxxx"
-
-# xxxxxx 为 cookie
 ```
+
 ## 备份后生成的新博客
 ![example](https://gitee.com/junyiz/dature/raw/master/images/example.jpg)
 
