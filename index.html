@@ -5,63 +5,78 @@
 <title>Dature:新浪博客备份工具</title>
 <style>
   body {
-    background-color: #484d5d;
-    background-image: url(assets/bg.png);
-    color: azure;
+    background-color: #fefefe;
   }
   #app {
-    padding: 20px 0;
+    padding: 25px 0;
     margin-left: auto;
     margin-right: auto;
-    width: 420px;
+    width: 480px;
   }
   label {
-    width: 70px;
-    display: inline-block;
+    color: darkseagreen;
+    line-height: 36px;
+    display: block;
   }
   .userid {
-    display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   }
   input[name=uid] {
-    flex: 1;
     height: 30px;
+    width: 100%;
     line-height: 30px;
+    border: 1px dashed #e2e2e2;
     border-radius: 3px;
+  }
+  input[name=uid]:focus {
+    outline: 1px dashed darkseagreen;
   }
   .cookie {
-    display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   }
   textarea[name=cookie] {
-    flex: 1;
     height: 120px;
-    border-radius: 3px;
-  }
-  .button {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  .button a {
-    cursor: pointer;
-    display: inline-block;
-    width: 80px;
-    line-height: 30px;
+    width: 100%;
     border-radius: 3px;
     border: 1px dashed #e2e2e2;
   }
+  textarea[name=cookie]:focus {
+    outline: 1px dashed darkseagreen;
+  }
+  .button {
+    margin-bottom: 25px;
+  }
+  .button a {
+    cursor: pointer;
+  }
+  .btn {
+    display: inline-block;
+    width: 100px;
+    color: #fff;
+    background-color: darkseagreen;
+    line-height: 36px;
+    text-align: center;
+    border-radius: 3px;
+  }
   .help {
-    font-size: 14px;
-    padding-left: 70px;
+    font-size: 13px;
+    padding-left: 10px;
     margin-bottom: 20px;
   }
   .output {
+    color: #fff;
     font-size: 12px;
-    height: 222px;
+    height: 270px;
+    padding: 8px;
+    border-radius: 3px;
     overflow-y: auto;
+  }
+  .loging {
+    background-color: #000;
   }
   a {
     color: darkseagreen;
+    text-decoration: none;
   }
 </style>
 </head>
@@ -69,8 +84,10 @@
   <div id="app">
     <div class="userid"><label for="uid">UID:</label> <input name="uid" id="uid" /></div> 
     <div class="cookie"><label for="cookie">Cookie:</label><textarea name="cookie" id="cookie"></textarea></div> 
-    <div class="help"><a id="help" href="https://gitee.com/junyiz/dature#%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E6%96%B0%E6%B5%AA%E5%8D%9A%E5%AE%A2%E7%9A%84-uid">点击查看如何获取 UID 和 Cookie？</a></div> 
-    <div class="button"><a id="btn">确定</a></div> 
+    <div class="button">
+      <a class="btn" id="btn">确定</a>
+      <a class="help" id="help" href="https://gitee.com/junyiz/dature#%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E6%96%B0%E6%B5%AA%E5%8D%9A%E5%AE%A2%E7%9A%84-uid">点击查看如何获取 UID 和 Cookie？</a>
+    </div> 
     <div class="output" id="out"></div>
   </div>
 </body>
