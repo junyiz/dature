@@ -1,7 +1,7 @@
 # dature
-基于 Node.js 的新浪博客备份程序，备份数据包含标题、正文、时间、分类、标签、图片，并生成 HTML 文件
+新浪博客备份工具，批量备份博客标题、正文、时间、分类、标签、图片，生成 HTML 文件
 
-<img src="https://gitee.com/junyiz/dature/raw/master/images/dature.jpg" width="450" />
+<img src="https://gitee.com/junyiz/dature/raw/master/images/dature.png" width="450" />
 
 ## 普通用户
 下载([github](https://github.com/junyiz/dature/releases), [gitee](https://gitee.com/junyiz/dature/releases))安装，即可使用
@@ -30,7 +30,7 @@ dature -u 1263917762 -c "xxxxxx"
 
 注意只需复制大红框中冒号后面的部分
 
-## buy-me-a-tea
+## star or tea
 如果这个仓库对你有帮助，欢迎 star 或 buy me a tea:
 
 <img src="https://gitee.com/junyiz/dature/raw/master/images/wechat.jpg" width="300" />
