@@ -34,7 +34,7 @@ if (argv.uid) {
   console.info(`\n博客存储目录：${dir}\n`)
 
   fetch(dir, argv.uid, cookie).then(() => {
-    console.info(`\n备份还在继续，请等待程序结束\n`)
+    console.info(`\n备份还在继续，请耐心等待...\n`)
   })
 }
 
