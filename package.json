@@ -7,13 +7,11 @@
     "dature": "cli.js"
   },
   "dependencies": {
-    "cheerio": "^0.22.0",
+    "cheerio": "^1.1.2",
     "iconv-lite": "^0.4.21",
     "is-url": "^1.2.2",
     "mkdirp": "^0.5.1",
-    "yargs": "^11.0.0"
-  },
-  "devDependencies": {
+    "yargs": "^18.0.0"
   },
   "repository": {
     "type": "git",
@@ -24,7 +22,7 @@
   },
   "homepage": "https://github.com/junyiz/dature#readme",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "data",
