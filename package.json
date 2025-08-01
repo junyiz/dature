@@ -3,6 +3,7 @@
   "version": "1.1.2",
   "description": "新浪博客备份工具",
   "main": "main.js",
+  "type": "module",
   "bin": {
     "dature": "cli.js"
   },

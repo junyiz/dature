@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 
-const join = require('path').join
-const yargs = require('yargs')
-const fetch = require('./lib/fetch')
-const package = require('./package.json')
+import { join } from 'path'
+import yargs from 'yargs'
+import fetch from './lib/fetch'
 
 let argv = yargs(process.argv.slice(2))
   .usage('Usage: dature [options]')
@@ -25,8 +24,6 @@ let argv = yargs(process.argv.slice(2))
   .argv;
 
 if (argv.uid) {
-  console.log(`dature@${package.version}\n`)
-
   const dir = join(process.cwd(), `./blog-${argv.uid}`)
   const cookie = (argv.cookie || '')
     .replace(/(NowDate|BLOG_TITLE|mblog_userinfo)[^;]*;/g, '')

@@ -2,7 +2,7 @@
 新浪博客批量备份工具，备份博客标题、正文、时间、分类、标签、图片，生成 HTML 文件
 
 
-## 用户
+## 使用
 ```bash
 # 1. 安装 Node.js 参见：https://nodejs.org/zh-cn/download/
 

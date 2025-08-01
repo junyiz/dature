@@ -2,10 +2,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Dature:新浪博客备份工具</title>
+<title>新浪博客批量备份工具</title>
 <style>
   body {
     background-color: #fefefe;
+    margin: 0;
+  }
+  .title {
+    box-shadow: 0 0 16px -9px #44444469;
+    line-height: 45px;
+  }
+  .inner {
+    color: darkseagreen;
+    margin-left: auto;
+    margin-right: auto;
+    width: 480px;
+    font-size: 24px;
   }
   #app {
     padding: 25px 0;
@@ -27,6 +39,8 @@
     line-height: 30px;
     border: 1px dashed #e2e2e2;
     border-radius: 3px;
+    padding: 5px;
+    box-sizing: border-box;
   }
   input[name=uid]:focus {
     outline: 1px dashed darkseagreen;
@@ -39,6 +53,8 @@
     width: 100%;
     border-radius: 3px;
     border: 1px dashed #e2e2e2;
+    padding: 5px;
+    box-sizing: border-box;
   }
   textarea[name=cookie]:focus {
     outline: 1px dashed darkseagreen;
@@ -64,12 +80,12 @@
     margin-bottom: 20px;
   }
   .output {
-    color: #fff;
     font-size: 12px;
     height: 270px;
     padding: 8px;
     border-radius: 3px;
     overflow-y: auto;
+    color: #fff;
   }
   .loging {
     background-color: #000;
@@ -78,10 +94,19 @@
     color: darkseagreen;
     text-decoration: none;
   }
+  .error {
+    color: red;
+    height: 26px;
+    text-decoration: none;
+  }
 </style>
 </head>
 <body>
+  <div class="title">
+    <div class="inner">新浪博客批量备份工具</div>
+  </div>
   <div id="app">
+    <div class="error" id="err"></div>
     <div class="userid"><label for="uid">UID:</label> <input name="uid" id="uid" /></div> 
     <div class="cookie"><label for="cookie">Cookie:</label><textarea name="cookie" id="cookie"></textarea></div> 
     <div class="button">
@@ -90,5 +115,33 @@
     </div> 
     <div class="output" id="out"></div>
   </div>
+  <script>
+    const btn = document.getElementById('btn')
+    const err = document.getElementById('err')
+    const out = document.getElementById('out')
+    btn.addEventListener('click', () => {
+      const uid = document.getElementById('uid').value
+      const cookie = document.getElementById('cookie').value
+      if (!uid || !cookie) {
+        console.log(uid, cookie)
+        err.innerHTML = '请输入 UID 和 Cookie'
+        return
+      }
+      const source = new EventSource(`/api/sina?u=${uid}&c=${encodeURIComponent(cookie)}`)
+      out.classList.add('loging')
+      source.onmessage = function(event) {
+        if (event.data === 'SSEEND') {
+          out.innerHTML = out.innerHTML + '<br />' + `备份完成, 预览<a href="https://immich.cn/blog/${uid}/" target=_blank"">https://immich.cn/blog/${uid}/</a>` + '<br />'
+          source.close()
+        } else {
+          out.innerHTML = out.innerHTML + event.data + '<br />'
+        }
+      }
+    })
+    const observer = new MutationObserver(() => {
+      out.scrollTop = out.scrollHeight
+    })
+    observer.observe(out, { childList: true, subtree: true })
+  </script>
 </body>
 </html>
