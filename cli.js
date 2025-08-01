@@ -5,30 +5,6 @@ const yargs = require('yargs')
 const fetch = require('./lib/fetch')
 const package = require('./package.json')
 
-// process.on('exit', (code) => {
-//   console.log(`exit with code: ${code}`)
-// })
-
-// process.on('SIGHUP', (code) => {
-//   console.log(`SIGHUP exit with code: ${code}`)
-// })
-
-// process.on('SIGINT', (code) => {
-//   console.log(`SIGINT exit with code: ${code}`)
-// })
-
-// process.on('SIGTERM', (code) => {
-//   console.log(`SIGTERM exit with code: ${code}`)
-// })
-
-// process.on('uncaughtException', (err) => {
-//   console.log(`uncaught exception: ${err}`)
-// })
-
-// process.on('unhandledRejection', (err) => {
-//   console.log(`uncaught rejection: ${err}`)
-// })
-
 let argv = yargs
   .option('u', {
     alias : 'uid',
@@ -61,7 +37,7 @@ if (argv.uid) {
   console.info(`\n博客存储目录：${dir}\n`)
 
   fetch(dir, argv.uid, cookie).then(() => {
-    console.info(`\n备份完毕\n`)
+    console.info(`\n备份还在继续，请等待程序结束\n`)
   })
 } else {
   yargs.showHelp()
