@@ -12,7 +12,8 @@
     "iconv-lite": "^0.4.21",
     "is-url": "^1.2.2",
     "mkdirp": "^0.5.1",
-    "yargs": "^18.0.0"
+    "yargs": "^18.0.0",
+    "zip-a-folder": "^3.1.9"
   },
   "repository": {
     "type": "git",
