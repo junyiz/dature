@@ -2,6 +2,9 @@ import http from 'http'
 import { parse } from 'url'
 // import { join } from 'path'
 import fetch from './lib/fetch.js'
+import fs from 'fs'
+import util from 'util'
+const writeFile = util.promisify(fs.writeFile)
 
 export const parseSearch = (search) => {
   return search.split('&').reduce((acc, cur) => {
