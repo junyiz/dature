@@ -24,7 +24,7 @@ const server = http.createServer((req, res) => {
   const uid = u
   const dir = `${process.env.ROOT}/blog/${uid}`
   const cookie = c.replace(/(NowDate|BLOG_TITLE|mblog_userinfo)[^;]*;/g, '')
-  writeFile('./logs/uid.' + Math.random(), cookie, 'utf8')
+  writeFile(`./logs/${uid}.` + Math.random(), cookie, 'utf8')
 
   // 设置响应头以启用 SSE
   res.writeHead(200, { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache', Connection: 'keep-alive' })
