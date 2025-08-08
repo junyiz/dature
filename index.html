@@ -1,147 +1,327 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>新浪博客批量备份工具</title>
-<style>
-  body {
-    background-color: #fefefe;
-    margin: 0;
-  }
-  .title {
-    box-shadow: 0 0 16px -9px #44444469;
-    line-height: 45px;
-  }
-  .inner {
-    color: darkseagreen;
-    margin-left: auto;
-    margin-right: auto;
-    width: 480px;
-    font-size: 24px;
-  }
-  #app {
-    padding: 25px 0;
-    margin-left: auto;
-    margin-right: auto;
-    width: 480px;
-  }
-  label {
-    color: darkseagreen;
-    line-height: 36px;
-    display: block;
-  }
-  .userid {
-    margin-bottom: 25px;
-  }
-  input[name=uid] {
-    height: 30px;
-    width: 100%;
-    line-height: 30px;
-    border: 1px dashed #e2e2e2;
-    border-radius: 3px;
-    padding: 5px;
-    box-sizing: border-box;
-  }
-  input[name=uid]:focus {
-    outline: 1px dashed darkseagreen;
-  }
-  .cookie {
-    margin-bottom: 25px;
-  }
-  textarea[name=cookie] {
-    height: 120px;
-    width: 100%;
-    border-radius: 3px;
-    border: 1px dashed #e2e2e2;
-    padding: 5px;
-    box-sizing: border-box;
-  }
-  textarea[name=cookie]:focus {
-    outline: 1px dashed darkseagreen;
-  }
-  .button {
-    margin-bottom: 25px;
-  }
-  .button a {
-    cursor: pointer;
-  }
-  .btn {
-    display: inline-block;
-    width: 100px;
-    color: #fff;
-    background-color: darkseagreen;
-    line-height: 36px;
-    text-align: center;
-    border-radius: 3px;
-  }
-  .help {
-    font-size: 13px;
-    padding-left: 10px;
-    margin-bottom: 20px;
-  }
-  .output {
-    font-size: 12px;
-    height: 270px;
-    padding: 8px;
-    border-radius: 3px;
-    overflow-y: auto;
-    color: #fff;
-  }
-  .loging {
-    background-color: #000;
-  }
-  a {
-    color: darkseagreen;
-    text-decoration: none;
-  }
-  .error {
-    color: red;
-    height: 26px;
-    text-decoration: none;
-  }
-</style>
-</head>
-<body>
-  <div class="title">
-    <div class="inner">新浪博客批量备份工具</div>
-  </div>
-  <div id="app">
-    <div class="error" id="err"></div>
-    <div class="userid"><label for="uid">UID:</label> <input name="uid" id="uid" /></div> 
-    <div class="cookie"><label for="cookie">Cookie:</label><textarea name="cookie" id="cookie"></textarea></div> 
-    <div class="button">
-      <a class="btn" id="btn">确定</a>
-      <a class="help" id="help" href="https://gitee.com/junyiz/dature#%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E6%96%B0%E6%B5%AA%E5%8D%9A%E5%AE%A2%E7%9A%84-uid">点击查看如何获取 UID 和 Cookie？</a>
-    </div> 
-    <div class="output" id="out"></div>
-  </div>
-  <script>
-    const btn = document.getElementById('btn')
-    const err = document.getElementById('err')
-    const out = document.getElementById('out')
-    btn.addEventListener('click', () => {
-      const uid = document.getElementById('uid').value
-      const cookie = document.getElementById('cookie').value
-      if (!uid || !cookie) {
-        console.log(uid, cookie)
-        err.innerHTML = '请输入 UID 和 Cookie'
-        return
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>新浪博客备份工具 - Dature</title>
+    <style>
+      :root {
+        --primary: #00c2ff;
+        --primary-dark: #0099cc;
+        --secondary: #6c63ff;
+        --dark: #121212;
+        --darker: #0a0a0a;
+        --light: #f8f9fa;
+        --gray: #2d2d2d;
+        --border: rgba(255, 255, 255, 0.1);
+        --success: #00d26a;
       }
-      const source = new EventSource(`/api/sina?u=${uid}&c=${encodeURIComponent(cookie)}`)
-      out.classList.add('loging')
-      source.onmessage = function(event) {
-        if (event.data === 'SSEEND') {
-		      out.innerHTML = out.innerHTML + '<br /><br />' + `备份完成<br />预览 <a href="https://immich.cn/blog/${uid}/" target=_blank"">https://immich.cn/blog/${uid}/</a><br />下载 <a href="https://immich.cn/blog/${uid}.zip" target=_blank"">https://immich.cn/blog/${uid}.zip</a>` + '<br />'
-          source.close()
-        } else {
-          out.innerHTML = out.innerHTML + event.data + '<br />'
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(135deg, var(--darker), var(--dark));
+        color: var(--light);
+        min-height: 100vh;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding-top: 2rem;
+      }
+
+      .logo {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(to right, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+      }
+
+      .tagline {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 2rem;
+      }
+
+      .card {
+        background: rgba(30, 30, 30, 0.5);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 1px solid var(--border);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .card-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+      }
+
+      .card-title i {
+        margin-right: 10px;
+        font-size: 1.8rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 14px;
+        border-radius: 8px;
+        background: rgba(20, 20, 20, 0.7);
+        border: 1px solid var(--border);
+        color: white;
+        font-family: inherit;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(0, 194, 255, 0.2);
+      }
+
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .btn {
+        background: linear-gradient(to right, var(--primary), var(--secondary));
+        color: white;
+        border: none;
+        padding: 14px 28px;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn i {
+        margin-right: 8px;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 194, 255, 0.3);
+      }
+
+      .help-link {
+        display: inline-block;
+        margin-top: 1rem;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+      }
+
+      .help-link:hover {
+        color: var(--primary);
+      }
+
+      .console {
+        background: rgba(10, 10, 10, 0.8);
+        border-radius: 8px;
+        padding: 1.5rem;
+        min-height: 300px;
+        max-height: 400px;
+        overflow-y: auto;
+        font-family: "Courier New", monospace;
+        font-size: 0.9rem;
+        border: 1px solid var(--border);
+        color: #00ff99;
+      }
+
+      .console-line {
+        margin-bottom: 8px;
+        line-height: 1.4;
+      }
+
+      .error {
+        color: #ff4d4d;
+        margin-bottom: 1rem;
+        font-weight: 500;
+      }
+
+      .success {
+        color: var(--success);
+        margin-top: 1rem;
+      }
+
+      .success a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .success a:hover {
+        text-decoration: underline;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 3rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.9rem;
+        padding-bottom: 2rem;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 1.5rem;
+        }
+
+        .card {
+          padding: 1.5rem;
         }
       }
-    })
-    const observer = new MutationObserver(() => {
-      out.scrollTop = out.scrollHeight
-    })
-    observer.observe(out, { childList: true, subtree: true })
-  </script>
-</body>
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">Dature</div>
+        <div class="tagline">安全备份您的新浪博客内容</div>
+      </header>
+
+      <main>
+        <div class="card">
+          <h2 class="card-title"><i>📝</i> 博客备份设置</h2>
+
+          <div class="error" id="err"></div>
+
+          <div class="form-group">
+            <label for="uid">新浪博客 UID</label>
+            <input
+              type="text"
+              id="uid"
+              name="uid"
+              placeholder="请输入您的博客UID (例如: 123456789)"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="cookie">新浪 Cookie</label>
+            <textarea
+              id="cookie"
+              name="cookie"
+              placeholder="粘贴您的Cookie内容..."
+            ></textarea>
+          </div>
+
+          <button class="btn" id="btn"><i>🚀</i> 开始备份</button>
+
+          <a
+            href="https://gitee.com/junyiz/dature#如何查看新浪博客的-uid"
+            class="help-link"
+            target="_blank"
+          >
+            <i>❓</i> 如何获取 UID 和 Cookie？
+          </a>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title"><i>📋</i> 备份日志</h2>
+          <div class="console" id="out"></div>
+          <div class="success" id="success"></div>
+        </div>
+      </main>
+
+      <footer>
+        <p>© 2025 Dature 新浪博客备份工具 | 安全可靠的数据备份方案</p>
+      </footer>
+    </div>
+
+    <script>
+      const btn = document.getElementById("btn");
+      const err = document.getElementById("err");
+      const out = document.getElementById("out");
+      const successEl = document.getElementById("success");
+
+      btn.addEventListener("click", () => {
+        const uid = document.getElementById("uid").value.trim();
+        const cookie = document.getElementById("cookie").value.trim();
+
+        // Clear previous output
+        out.innerHTML = "";
+        successEl.innerHTML = "";
+        err.innerHTML = "";
+
+        if (!uid || !cookie) {
+          err.innerHTML = "请输入 UID 和 Cookie";
+          return;
+        }
+
+        // Add initial log
+        addLog("正在连接服务器...");
+
+        const source = new EventSource(
+          `/api/sina?u=${uid}&c=${encodeURIComponent(cookie)}`,
+        );
+
+        source.onmessage = function (event) {
+          if (event.data === "SSEEND") {
+            addLog("备份完成！");
+            successEl.innerHTML = `
+                        <p>✅ 博客备份成功！</p>
+                        <p>预览博客: <a href="https://immich.cn/blog/${uid}/" target="_blank">https://immich.cn/blog/${uid}/</a></p>
+                        <p>下载压缩包: <a href="https://immich.cn/blog/${uid}.zip" target="_blank">https://immich.cn/blog/${uid}.zip</a></p>
+                    `;
+            source.close();
+          } else {
+            addLog(event.data);
+          }
+        };
+
+        source.onerror = function () {
+          addLog("❌ 连接错误，请重试");
+          source.close();
+        };
+      });
+
+      function addLog(message) {
+        const line = document.createElement("div");
+        line.className = "console-line";
+        line.textContent = "> " + message;
+        out.appendChild(line);
+        out.scrollTop = out.scrollHeight;
+      }
+    </script>
+  </body>
 </html>

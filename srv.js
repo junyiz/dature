@@ -42,6 +42,7 @@ const server = http.createServer((req, res) => {
     });
   };
 
+  console.info("dir", dir);
   fetch(dir, uid, cookie);
 });
 
