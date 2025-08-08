@@ -304,6 +304,8 @@
                         <p>下载压缩包: <a href="https://immich.cn/blog/${uid}.zip" target="_blank">https://immich.cn/blog/${uid}.zip</a></p>
                     `;
             source.close();
+          } else if (event.data === "HEARTBEAT") {
+            addLog("...");
           } else {
             addLog(event.data);
           }
