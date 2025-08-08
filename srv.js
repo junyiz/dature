@@ -14,15 +14,17 @@ export const parseSearch = (search) => {
   }, {});
 };
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
   const { pathname, query } = parse(req.url);
   if (pathname != "/api/sina") return;
 
-  const { u, c } = parseSearch(query);
+  const { u, c, re } = parseSearch(query);
   if (!u && !c) return;
 
   const uid = u;
-  const dir = `${process.env.ROOT}/blog/${uid}`;
+  const www = process.env.ROOT || "/var/www/html";
+  const dir = `${www}/blog/${uid}`;
+  const zipFile = `${www}/blog/${uid}.zip`;
   const cookie = c.replace(/(NowDate|BLOG_TITLE|mblog_userinfo)[^;]*;/g, "");
   const logfile = `./logs/${uid}.` + Math.random();
   writeFile(logfile, `${cookie}\n\n`, "utf8");
@@ -42,7 +44,25 @@ const server = http.createServer((req, res) => {
     });
   };
 
-  console.info("dir", dir);
+  // 如果用户选择重新备份，删除旧数据
+  if (re === "1") {
+    try {
+      // 删除博客目录
+      if (fs.existsSync(dir)) {
+        fs.rmdirSync(dir, { recursive: true });
+        console.log(`已删除目录: ${dir}`);
+      }
+
+      // 删除压缩文件
+      if (fs.existsSync(zipFile)) {
+        fs.unlinkSync(zipFile);
+        console.log(`已删除压缩文件: ${zipFile}`);
+      }
+    } catch (err) {
+      console.log(`删除旧备份失败: ${err.message}`);
+    }
+  }
+
   fetch(dir, uid, cookie);
 });
 
