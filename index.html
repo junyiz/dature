@@ -131,7 +131,7 @@
       out.classList.add('loging')
       source.onmessage = function(event) {
         if (event.data === 'SSEEND') {
-		out.innerHTML = out.innerHTML + '<br />' + `备份完成<br />预览 <a href="https://immich.cn/blog/${uid}/" target=_blank"">https://immich.cn/blog/${uid}/</a><br />下载 <a href="https://immich.cn/blog/${uid}.zip" target=_blank"">https://immich.cn/blog/${uid}.zip</a>` + '<br />'
+		      out.innerHTML = out.innerHTML + '<br /><br />' + `备份完成<br />预览 <a href="https://immich.cn/blog/${uid}/" target=_blank"">https://immich.cn/blog/${uid}/</a><br />下载 <a href="https://immich.cn/blog/${uid}.zip" target=_blank"">https://immich.cn/blog/${uid}.zip</a>` + '<br />'
           source.close()
         } else {
           out.innerHTML = out.innerHTML + event.data + '<br />'
