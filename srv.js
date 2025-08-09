@@ -49,14 +49,14 @@ const server = http.createServer(async (req, res) => {
     try {
       // 删除博客目录
       if (fs.existsSync(dir)) {
-        fs.rmdirSync(dir, { recursive: true });
-        console.log(`已删除目录: ${dir}`);
+        fs.rmSync(dir, { recursive: true });
+        console.log(`已删除目录: ${uid}`);
       }
 
       // 删除压缩文件
       if (fs.existsSync(zipFile)) {
         fs.unlinkSync(zipFile);
-        console.log(`已删除压缩文件: ${zipFile}`);
+        console.log(`已删除压缩文件: ${uid}.zip`);
       }
     } catch (err) {
       console.log(`删除旧备份失败: ${err.message}`);
