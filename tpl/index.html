@@ -1,98 +1,122 @@
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-<title></title>
-<link rel="stylesheet" href="./libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-<link href="./style.css" rel="stylesheet" />
-<script src="./libs/vue.js"></script>
-<script src="./data.js"></script>
-</head>
-<body>
-<div id="app" class="root" :class="{hasSide: sideShow}">
-    <aside>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link
+      rel="stylesheet"
+      href="./libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link href="./style.css" rel="stylesheet" />
+    <script src="./libs/vue.js"></script>
+    <script src="./data.js"></script>
+  </head>
+  <body>
+    <div id="app" class="root" :class="{hasSide: sideShow}">
+      <aside>
         <div>
-            <h1 class="title">{{blog.title}}</h1>
-            <button @click="hide">&times;</button>
+          <h1 class="title">{{blog.title}}</h1>
+          <button @click="hide">&times;</button>
         </div>
         <ul>
-            <li v-for="it, id in blog.urls"><a @click="key = id" v-html="it.text" :class="{active: key == id}"></a></li>
+          <li v-for="it, id in blog.urls">
+            <a
+              @click="key = id"
+              v-html="it.text"
+              :class="{active: key == id}"
+            ></a>
+          </li>
         </ul>
-    </aside>
-    <article>
+      </aside>
+      <article>
         <span @click="show" v-show="!sideShow" class="open">&#9776;</span>
         <div class="title" v-html="post.title"></div>
         <div class="attr">
-            <span>时间：{{post.date}}</span>
-            <span v-if="post.cate">分类: {{post.cate}}</span>
-            <span v-if="post.tags && post.tags.length">标签：{{post.tags.join(' ')}}</span>
-            <span v-if="post.link"><a :href="post.link" target="_blank">原文</a></span>
+          <span>时间：{{post.date}}</span>
+          <span v-if="post.cate">分类: {{post.cate}}</span>
+          <span v-if="post.tags && post.tags.length"
+            >标签：{{post.tags.join(' ')}}</span
+          >
+          <span v-if="post.link"
+            ><a :href="post.link" target="_blank">原文</a></span
+          >
         </div>
         <div class="content" v-html="post.content"></div>
-    <article>
-    <footer>
-        <div class="prev" @click="prev" v-html="(key > 0) && blog.urls[key - 1] ? blog.urls[key - 1].text : ''"></div>
-        <div class="next" @click="next" v-html="(key < len - 1) && blog.urls[key + 1] ? blog.urls[key + 1].text : ''"></div>
-    </footer>
-</div>
-<script>
-new Vue({
-  el: '#app',
-  data() {
-    return {
-      key: -1,
-      len: blog.urls.length,
-      blog: blog,
-      post: '',
-      sideShow: localStorage.getItem('sideShow') === 'true',
-    }
-  },
-  mounted() {
-    document.title = blog.title
-    this.key = localStorage.getItem('key') || 0
-  },
-  watch: {
-    key(val) {
-      window.scrollTo(0, 0)
-      const { href } = this.blog.urls[this.key]
-      this.load(href.split('/s/')[1].replace('_', '/').replace('.html', '.js'))
-      localStorage.setItem('key', val)
-    }
-  },
-  methods: {
-    hide() {
-      this.sideShow = false
-      localStorage.setItem('sideShow', 'false')
-    },
-    show() {
-      this.sideShow = true
-      localStorage.setItem('sideShow', 'true')
-    },
-    prev() {
-      this.key = this.key > 0 ? this.key - 1 : 0
-    },
-    next() {
-      this.key = this.key < this.len - 1 ? this.key + 1 : this.key
-    },
-    load(url) {
-      const script = document.createElement('script')
-      script.type = 'text/javascript'
-      script.addEventListener('load', () => {
-        this.post = window.post
-        script.parentNode.removeChild(script)
-      })
-      script.addEventListener('error', () => {
-        this.post = {
-          title: this.blog.urls[this.key] && this.blog.urls[this.key].text,
-          content: '文章未下载'
-        }
-        script.parentNode.removeChild(script)
-      })
-      script.src = url
-      document.getElementsByTagName('head')[0].appendChild(script)
-    }
-  }
-})
-</script>
-</body>
+      </article>
+      <footer>
+        <div
+          class="prev"
+          @click="prev"
+          v-html="(key > 0) && blog.urls[key - 1] ? blog.urls[key - 1].text : ''"
+        ></div>
+        <div
+          class="next"
+          @click="next"
+          v-html="(key < len - 1) && blog.urls[key + 1] ? blog.urls[key + 1].text : ''"
+        ></div>
+      </footer>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            key: -1,
+            len: blog.urls.length,
+            blog: blog,
+            post: "",
+            sideShow: localStorage.getItem("sideShow") === "true",
+          };
+        },
+        mounted() {
+          document.title = blog.title;
+          this.key = localStorage.getItem("key") || 0;
+        },
+        watch: {
+          key(val) {
+            window.scrollTo(0, 0);
+            const { href } = this.blog.urls[this.key];
+            this.load(
+              href.split("/s/")[1].replace("_", "/").replace(".html", ".js"),
+            );
+            localStorage.setItem("key", val);
+          },
+        },
+        methods: {
+          hide() {
+            this.sideShow = false;
+            localStorage.setItem("sideShow", "false");
+          },
+          show() {
+            this.sideShow = true;
+            localStorage.setItem("sideShow", "true");
+          },
+          prev() {
+            this.key = this.key > 0 ? this.key - 1 : 0;
+          },
+          next() {
+            this.key = this.key < this.len - 1 ? this.key + 1 : this.key;
+          },
+          load(url) {
+            const script = document.createElement("script");
+            script.type = "text/javascript";
+            script.addEventListener("load", () => {
+              this.post = window.post;
+              script.parentNode.removeChild(script);
+            });
+            script.addEventListener("error", () => {
+              this.post = {
+                title:
+                  this.blog.urls[this.key] && this.blog.urls[this.key].text,
+                content: "文章未下载",
+              };
+              script.parentNode.removeChild(script);
+            });
+            script.src = url;
+            document.getElementsByTagName("head")[0].appendChild(script);
+          },
+        },
+      });
+    </script>
+  </body>
 </html>
