@@ -20,37 +20,9 @@ body {
     width: 100%;
     height: 100%;
 }
-header {
-    width: 100%;
-    height: 40px;
-    padding: 10px 12px 10px 20px;
-    position: fixed;
-    top: 0;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    z-index: 20;
-    box-shadow: 0 0 16px -9px #44444469;
-}
-header svg {
-    cursor: pointer;
-}
-header svg:hover {
-    color: #42b983;
-}
-header h1 {
-    font-size: 20px;
-    line-height: 40px;
-    padding-left: 15px;
-    padding-right: 15px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
 aside {
     width: 245px;
     position: fixed;
-    top: 40px;
     left: -245px;
     border-right: 1px solid #eceef1;
     height: calc(100% - 0px);
@@ -61,6 +33,29 @@ aside {
     overflow-x: hidden;
     overflow-y: auto;
     background-color: #fff;
+}
+aside div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    background-color: #616161;
+}
+aside div h1 {
+    padding: 10px;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+aside div button {
+    border: 0;
+    display: block;
+    outline: 0;
+    padding: 10px;
+    color: #fff;
+    font-size: 24px;
+    background-color: #616161;
 }
 aside ul {
     padding-left: 15px;
@@ -82,15 +77,17 @@ aside li a.active {
     color: #42b983;
     font-weight: 400;
 }
-main {
-    margin-top: 40px;
-    margin-bottom: 40px;
+article .open {
+    font-size: 24px;
+    position: fixed;
+    padding-top: 6px;
+    padding-left: 10px;
 }
 article .title {
     width: 600px;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 10px;
+    padding-top: 46px;
     padding-bottom: 10px;
     font-size: 20px;
     font-weight: 400;
@@ -199,12 +196,13 @@ footer .next::after {
 
 .hasSide aside {
     left: 0;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 @media screen and (max-device-width: 480px) {
-    main .title,
-    main .attr,
-    main .content {
+    article .title,
+    article .attr,
+    article .content {
         width: 100%;
         padding-left: 8px;
         padding-right: 8px;
