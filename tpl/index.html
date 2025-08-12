@@ -29,8 +29,8 @@
     <div class="content" v-html="post.content"></div>
   </div>
  <div class="foot">
-    <span class="prev" @click="prev" v-html="key > 0 ? blog.urls[key - 1].text : ''"></span>
-    <span class="next" @click="next" v-html="key < len - 1 ? blog.urls[key + 1].text : ''"></len></span>
+    <span class="prev" @click="prev" v-html="(key > 0) && blog.urls[key - 1] ? blog.urls[key - 1].text : ''"></span>
+    <span class="next" @click="next" v-html="(key < len - 1) && blog.urls[key + 1] ? blog.urls[key + 1].text : ''"></len></span>
   </div>
 </div>
 <script>
@@ -85,7 +85,7 @@ new Vue({
       })
       script.addEventListener('error', () => {
         this.post = {
-          title: this.blog.urls[this.key].text,
+          title: this.blog.urls[this.key] && this.blog.urls[this.key].text,
           content: '文章未下载'
         }
         script.parentNode.removeChild(script)

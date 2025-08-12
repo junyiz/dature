@@ -213,6 +213,7 @@ body {
     padding-left: 10px;
   }
   .main .title,
+  .main .attr,
   .main .content {
     width: 100%; 
     padding-left: 8px;
